@@ -10,7 +10,7 @@ def rms(xs, ys):
         dx = x2 - x1
         dy = y2 - y1
         area += dx*(dy**2/3 + y1*y2)
-    return math.sqrt(area/(xs[-1] - xs[0]))
+    return math.sqrt(1/(xs[-1] - xs[0])*area)
 
 
 # A triangular wave has an RMS of Peak/sqrt(3)
