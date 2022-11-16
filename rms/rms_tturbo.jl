@@ -1,13 +1,13 @@
-using LoopVectorization, BenchmarkTools
+using LoopVectorization
 
 function rms(xs, ys)
     area = 0.0
     @tturbo for i in 2:length(xs)
-        dx = xs[i] - xs[i-1]
-        y1 = ys[i-1]
-        y2 = ys[i]
-        dy = y2 - y1
-        area += dx*(dy^2/3 + y1*y2)
+        Δx = xs[i] - xs[i-1]
+        y₁ = ys[i-1]
+        y₂ = ys[i]
+        Δy = y₂ - y₁
+        area += Δx*(Δy^2/3 + y₁*y₂)
     end
     sqrt(area/(xs[end] - xs[1]))
 end
