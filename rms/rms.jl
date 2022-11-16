@@ -1,4 +1,3 @@
-# Julia rms
 function rms(xs, ys)
     area = 0.0
     for i in 2:length(xs)
