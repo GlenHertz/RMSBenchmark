@@ -1,0 +1,13 @@
+name = "RMSBenchmark"
+uuid = "e73a1be6-63ae-4bb9-9560-9a4a2e2c9890"
+authors = ["Glen Hertz <glen.hertz@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Conda = "8f4d0f93-b110-5947-807f-2305c1781a2d"
+LoopVectorization = "bdcacae8-1622-11e9-2a5c-532679323890"
+ProfileSVG = "132c30aa-f267-4189-9183-c8a63c7e05e6"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+ThreadsX = "ac1d9e8a-700a-412c-b207-f0111f4b6c0d"
+UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
