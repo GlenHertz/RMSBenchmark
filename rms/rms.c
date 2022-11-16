@@ -19,6 +19,7 @@ double rms(double xs[], double ys[], long N) {
     return val;
 }
 
+
 int main() {
     /* declare variables: */
     long i, trials, N;
