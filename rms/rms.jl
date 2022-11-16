@@ -1,3 +1,4 @@
+# Julia rms
 function rms2(xs, ys)
     area = 0.0
     for i in 2:length(xs)
@@ -7,13 +8,13 @@ function rms2(xs, ys)
         dy = y2 - y1
         area += dx*(dy^2/3 + y1*y2)
     end
-    sqrt(area/(xs[end] - xs[1]))
+    sqrt(1/(xs[end] - xs[1])*area)
 end
 
 rms2([1, 1.5, 2, 3], [-1, 0, 1, -1])
 # Create sine wave:
 N = 10^6 + 1
-tstop = 1e-3 
+tstop = 1e-3
 dt = tstop/(N-1)
 xs = [dt*i for i in 0:N-1]
 freq = 1000
