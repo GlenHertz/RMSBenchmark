@@ -9,11 +9,9 @@ double rms(double xs[], double ys[], long N) {
 
     area = 0.0;
     for (i=1; i < N; i++) {
-        x1 = xs[i-1];
+        dx = xs[i] - xs[i-1];
         y1 = ys[i-1];
-        x2 = xs[i];
         y2 = ys[i];
-        dx = x2 - x1;
         dy = y2 - y1;
         area += dx*(pow(dy,2)/3.0 + y1*y2);
     }
