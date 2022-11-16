@@ -12,6 +12,7 @@ function rms(xs, ys)
     sqrt(area/(xs[end] - xs[1]))
 end
 
+
 rms([1, 1.5, 2, 3], [-1, 0, 1, -1])
 # Create sine wave:
 N = 10^6 + 1
