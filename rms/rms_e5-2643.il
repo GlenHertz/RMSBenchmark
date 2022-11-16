@@ -1,4 +1,3 @@
-
 ; Skill RMS
 procedure( rms(xs, ys)
     prog( (area x1 y1 x2 y2 xstart xend)
@@ -19,6 +18,8 @@ procedure( rms(xs, ys)
         return(sqrt(1/(xend - xstart) * area))
     ) ; prog
 ) ; procedure
+
+
 
 ; More lispy version of the above
 procedure( (rms2 xs ys)
