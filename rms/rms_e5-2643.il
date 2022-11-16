@@ -1,3 +1,5 @@
+
+; Skill RMS
 procedure( rms(xs, ys)
     prog( (area x1 y1 x2 y2 xstart xend)
         area = 0.0
