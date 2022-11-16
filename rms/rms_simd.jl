@@ -1,19 +1,21 @@
-function rms2(xs, ys)
+function rms(xs, ys)
     area = 0.0
-    @inbounds @simd for i in 2:length(xs)
-        dx = xs[i] - xs[i-1]
-        y1 = ys[i-1]
-        y2 = ys[i]
-        dy = y2 - y1
-        area += dx*(dy^2/3 + y1*y2)
+    @simd for i in 2:length(xs)
+        Δx = xs[i] - xs[i-1]
+        y₁ = ys[i-1]
+        y₂ = ys[i]
+        Δy = y₂ - y₁
+        area += Δx*(Δy^2/3 + y₁*y₂)
     end
     sqrt(area/(xs[end] - xs[1]))
 end
 
-rms2([1, 1.5, 2, 3], [-1, 0, 1, -1])
+
+
+rms([1, 1.5, 2, 3], [-1, 0, 1, -1])
 # Create sine wave:
 N = 10^6 + 1
-tstop = 1e-3 
+tstop = 1e-3
 dt = tstop/(N-1)
 xs = [dt*i for i in 0:N-1]
 freq = 1000
@@ -25,10 +27,10 @@ ys = sin.(2pi*freq*xs)
 
 
 # Run benchmark:
-val = rms2(xs, ys)  # first time to compile
+val = rms(xs, ys)  # first time to compile
 trials = 380
 t = @elapsed for i in 1:trials
-    rms2(xs, ys)
+    rms(xs, ys)
 end
 ns = t / trials / N * 1e9
 
