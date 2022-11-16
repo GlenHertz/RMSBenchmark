@@ -9,7 +9,7 @@ def rms(xs, ys):
         y2 = ys[i]
         dx = x2 - x1
         dy = y2 - y1
-        area += dx*(dy**2/3 + y1*y2)
+        area += dx*(dy**2/3.0 + y1*y2)
     return math.sqrt(area/(xs[-1] - xs[0]))
 
 

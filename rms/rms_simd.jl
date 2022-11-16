@@ -1,3 +1,4 @@
+# Julia with Single Instrution Multiple Data (SIMD)
 function rms(xs, ys)
     area = 0.0
     @simd for i in 2:length(xs)
