@@ -10,8 +10,9 @@ function rms(xs, ys)
         Δy = y₂ - y₁
         area += Δx*(Δy^2/3 + y₁*y₂)
     end
-    sqrt(area/(xs[end] - xs[1]))
+    sqrt(area/(xs[end] - xs[begin]))
 end
+
 
 
 rms([1, 1.5, 2, 3], [-1, 0, 1, -1])

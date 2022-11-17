@@ -10,8 +10,11 @@ function rms(xs, ys)
         dy = y2 - y1
         area += dx*(dy^2/3 + y1*y2)
     end
-    sqrt(area/(xs[end] - xs[1]))
+    sqrt(area/(xs[end] - xs[begin]))
 end
+
+
+
 
 rms([1, 1.5, 2, 3], [-1, 0, 1, -1])
 # Create sine wave:

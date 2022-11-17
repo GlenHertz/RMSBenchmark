@@ -1,14 +1,18 @@
 function rms(xs, ys)
-    area = zero(xs[1] * ys[1]^2 / 3)
+    @assert length(xs) == length(ys) "dimension mismatch"
+    area = 0.0
     @inbounds @fastmath @simd for i in 2:length(xs)
+        dx = xs[i] - xs[i-1]
         y1 = ys[i-1]
         y2 = ys[i]
-        dx = xs[i] - xs[i-1]
         dy = y2 - y1
         area += dx*(dy^2/3 + y1*y2)
     end
-    sqrt(area/(xs[end] - xs[1]))
+    sqrt(area/(xs[end] - xs[begin]))
 end
+
+
+
 
 # Create sine wave:
 N = 10^6 + 1
