@@ -3,13 +3,13 @@ import numpy as np
 
 def rms(xs, ys):
     area = 0.0
-    x1 = xs[0:-2]
-    y1 = ys[0:-2]
-    x2 = xs[1:-1]
-    y2 = ys[1:-1]
-    dx = x2 - x1
-    dy = y2 - y1
-    area = dx*(dy**2/3 + y1*y2)
+    xs1 = xs[0:-2]
+    ys1 = ys[0:-2]
+    xs2 = xs[1:-1]
+    ys2 = ys[1:-1]
+    dx = xs2 - xs1
+    dy = ys2 - ys1
+    area = dx*(dy**2/3 + ys1*ys2)
     area = area.sum()
     return math.sqrt(area/(xs[-1] - xs[0]))
 

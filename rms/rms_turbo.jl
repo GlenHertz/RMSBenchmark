@@ -1,6 +1,7 @@
 using LoopVectorization
 
 function rms(xs, ys)
+    @assert length(xs) == length(ys) "dimension mismatch"
     area = 0.0
     @turbo for i in 2:length(xs)
         dx = xs[i] - xs[i-1]

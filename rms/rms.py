@@ -1,6 +1,8 @@
 import math
 
 def rms(xs, ys):
+    if len(xs) != len(ys):
+        raise Exception("dimension mismatch")
     area = 0.0
     for i in range(1,len(xs)):
         dx = xs[i] - xs[i-1]

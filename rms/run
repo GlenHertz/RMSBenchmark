@@ -5,9 +5,12 @@ julia rms.jl
 rm -f rms
 gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms &&
 ./rms
+julia rms_simd.jl
+julia -t4 rms_tturbo.jl
+julia -t64 rms_tturbo.jl
 #python rms_for_numpy.py
-julia rms_for_numba.jl
-julia rms_for_numba_numpy.jl
+#julia rms_for_numba.jl
+#julia rms_for_numba_numpy.jl
 #julia rms_fastmath.jl
 #python rms_array_numpy.py
 #julia rms_array.jl
