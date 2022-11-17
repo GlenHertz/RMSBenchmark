@@ -2,15 +2,16 @@ import math
 import numpy as np
 
 def rms(xs, ys):
-    area = 0.0
+    if len(xs) != len(ys):
+        raise Exception("dimension mismatch")
     xs1 = xs[0:-2]
     ys1 = ys[0:-2]
     xs2 = xs[1:-1]
     ys2 = ys[1:-1]
     dx = xs2 - xs1
     dy = ys2 - ys1
-    area = dx*(dy**2/3 + ys1*ys2)
-    area = area.sum()
+    areas = dx*(dy**2/3 + ys1*ys2)
+    area = areas.sum()
     return math.sqrt(area/(xs[-1] - xs[0]))
 
 
