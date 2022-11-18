@@ -5,7 +5,7 @@
 
 double rms(double xs[], double ys[], long N) {
     long i;
-    double area, x1, y1, x2, y2, dx, dy, val;
+    double area, y1, y2, dx, dy, val;
 
     area = 0.0;
     for (i=1; i < N; i++) {
@@ -52,7 +52,7 @@ int main() {
         rms(xs, ys, N);
     t2 = clock();
     ns = (double) (t2 - t1) / (double) CLOCKS_PER_SEC / (double) trials / (double) N * 1e9;
-    printf("gcc    %s    for           rms = %.16f : %5.1f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
+    printf("gcc    %s    for            rms=%.16f : %5.1f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
     return 0;
 }
 

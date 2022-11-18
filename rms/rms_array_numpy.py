@@ -31,7 +31,7 @@ ys = np.array([math.sin(2*math.pi*freq*x) for x in xs])
 # Run benchmark
 import time
 val = rms(xs, ys)
-trials=50
+trials=38
 t1 = time.time()
 for i in range(trials):
     rms(xs, ys)

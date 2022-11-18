@@ -13,32 +13,27 @@ def rms(xs, ys):
     return math.sqrt(area/(xs[-1] - xs[0]))
 
 
-# A triangular wave has an RMS of Peak/sqrt(3)
-N = 10**6
-dt = 1/N
-xs = [dt * i for i in range(N+1)]
-ys = xs
-
+rms([1, 1.5, 2, 3], [-1, 0, 1, -1])
+# Create sine wave:
+N = 10**6 + 1
+tstop = 1e-3
+dt = tstop/(N-1)
+xs = [dt*i for i in range(N)]
+freq = 1000
+ys = [math.sin(2*math.pi*freq*x) for x in xs]
+#print("first (x,y) = (", xs[0], ", ", ys[0], ")")
+#print("last (x,y) = (", xs[-1], ", ", ys[-1], ")")
 
 # Run benchmark
 import time
 val = rms(xs, ys)
-trials=10
-times = []
+trials=38
 tbegin = time.time()
-min_time = 1e6
 for i in range(trials):
-    t1 = time.time()
     rms(xs, ys)
-    t2 = time.time()
-    min_time = min(min_time, t2 - t1)
 tdone = time.time()
 
 ns = (tdone - tbegin)/trials/N * 1e9
-
-print("RMS of trangular wave: {val} (ans = {ans})".format(val=rms(xs, ys), ans=1/math.sqrt(3)))
-
-print("Best time of {trials} trials: {min_time}".format(trials=trials, min_time=min_time))
 
 import sys
 ver = "{major}.{minor}.{micro}".format(major=sys.version_info[0], minor=sys.version_info[1], micro=sys.version_info[2])

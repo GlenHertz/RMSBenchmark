@@ -33,7 +33,7 @@ for {set i 0} {$i < $N} {incr i} {
 }
 
 # Run benchmark
-set trials 1
+set trials 38
 set t1 [clock microseconds]
 for {set i 0} {$i < $trials} {incr i} {
     set val [rms $xs $ys]

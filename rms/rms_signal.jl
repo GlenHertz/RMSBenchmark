@@ -20,14 +20,14 @@ function rms(s::Signal)
         dy = p2.y - p1.y
         area += dx*(dy^2/3 + p1.y*p2.y)
     end
-    sqrt(area/(xs[end] - xs[1]))
+    sqrt(area/(last(xs) - first(xs)))
 end
 
 
 
 # Create sine wave:
 N = 10^6 + 1
-tstop = 1e-3 
+tstop = 1e-3
 dt = tstop/(N-1)
 xs = [dt*i for i in 0:N-1]
 freq = 1000
