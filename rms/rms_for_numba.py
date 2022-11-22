@@ -1,5 +1,5 @@
 import math
-from numba import jit, njit, float64
+from numba import njit
 from numba.typed import List
 
 @njit

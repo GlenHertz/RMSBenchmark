@@ -1,6 +1,3 @@
-using PyCall
-
-py"""
 import math
 from numba import njit
 import numpy as np
@@ -19,8 +16,6 @@ def rms(xs, ys):
     return math.sqrt(area/(xs[-1] - xs[0]))
 
 
-
-
 # Create sine wave
 N=10**6 + 1
 freq = 1000
@@ -35,7 +30,7 @@ ys = np.array([math.sin(2*math.pi*freq*x) for x in xs])
 # Run benchmark
 import time
 val = rms(xs, ys)
-trials=380
+trials=38
 t1 = time.time()
 for i in range(trials):
     rms(xs, ys)
@@ -45,4 +40,3 @@ ns = (t2 - t1)/trials/N * 1e9
 import sys
 ver = "{major}.{minor}.{micro}".format(major=sys.version_info[0], minor=sys.version_info[1], micro=sys.version_info[2])
 print("Python {ver}     for(numba,np) rms = {val} : {t:>5} ns per iteration average over {trials} trials of {N:<3} points".format(ver=ver, val=val, t=round(ns,1), trials=trials, N=N))
-"""
