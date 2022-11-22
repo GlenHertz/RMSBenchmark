@@ -3,6 +3,7 @@ using PyCall
 py"""
 import math
 from numba import jit, njit, float64
+from numba.typed import List
 import numpy as np
 
 @njit
@@ -26,8 +27,8 @@ N=10**6 + 1
 freq = 1000
 tstop = 1/freq
 dt = tstop/(N-1)
-xs = [dt * i for i in range(N)]
-ys = [math.sin(2*math.pi*freq*x) for x in xs]
+xs = List([dt * i for i in range(N)])
+ys = List([math.sin(2*math.pi*freq*x) for x in xs])
 
 
 

@@ -2,10 +2,15 @@
 set -x
 tclsh rms.tcl
 python2 rms.py
+python rms.py
 python3 rms.py
 python2 rms_array_numpy.py
+python rms_array_numpy.py
 python3 rms_array_numpy.py
 python3 rms_for_numpy.py
+python rms_for_numpy.py
+python2 rms_for_numba.py
+python rms_for_numba.py
 python3 rms_for_numba.py
 rm -f rms{1,2,3}
 gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms1 && ./rms1
@@ -15,6 +20,7 @@ julia rms_array.jl
 julia rms.jl
 julia rms_simd.jl
 julia -t4 rms_tturbo.jl
+julia -t8 rms_tturbo.jl
 julia -tauto rms_tturbo.jl
 #julia rms_for_numba.jl
 #julia rms_for_numba_numpy.jl

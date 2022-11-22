@@ -1,6 +1,6 @@
 import math
 from numba import jit, njit, float64
-import numpy as np
+from numba.typed import List
 
 @njit
 def rms(xs, ys):
@@ -14,17 +14,19 @@ def rms(xs, ys):
     return math.sqrt(area/(xs[-1] - xs[0]))
 
 
-# A triangular wave has an RMS of Peak/sqrt(3)
-N = 10**6
-dt = 1/N
-xs = [dt * i for i in range(N+1)]
-ys = xs
+# A sine wave
+N=10**6 + 1
+freq = 1000
+tstop = 1/freq
+dt = tstop/(N-1)
+xs = List([dt * i for i in range(N)])
+ys = List([math.sin(2*math.pi*freq*x) for x in xs])
 
 
 # Run benchmark
 import time
 val = rms(xs, ys) # warm up
-trials=20
+trials=38
 times = []
 tbegin = time.time()
 for i in range(trials):
