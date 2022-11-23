@@ -24,7 +24,10 @@ int main() {
     /* declare variables: */
     long i, trials, N;
     double tstop, dt, freq, t;
+    size_t element_size = sizeof tstop;
     double val;
+    double *xs_gen;
+    double *ys_gen;
     double *xs;
     double *ys;
     clock_t t1, t2;
@@ -35,13 +38,39 @@ int main() {
     freq = 1000;
     tstop = 1/ (double) freq;
     dt = tstop / (double) (N-1);
+    xs_gen = malloc(N*sizeof(double));
+    ys_gen = malloc(N*sizeof(double));
     xs = malloc(N*sizeof(double));
     ys = malloc(N*sizeof(double));
 
     for (i = 0; i < N; i++) {
         t = dt * i;
-        xs[i] = t;
-        ys[i] = sin(2*M_PI*freq*t);
+        xs_gen[i] = t;
+        ys_gen[i] = sin(2*M_PI*freq*t);
+    }
+
+    /* write to file to prevent constant folding */
+    char file_name[] = "xs_ys.bin";
+    FILE * fp;
+
+    fp = fopen(file_name, "wb");
+    if (fp == NULL) { /* If an error occurs during the file creation */
+        fprintf(stderr, "fopen() failed for '%s'\n", file_name);
+        return 1;
+    } else {
+        fwrite(xs_gen, element_size, N, fp);
+        fwrite(ys_gen, element_size, N, fp);
+        fclose(fp);
+    }
+
+    fp = fopen(file_name, "r");
+    if (fp == NULL) { /* If an error occurs during the file creation */
+        fprintf(stderr, "fopen() failed for '%s'\n", file_name);
+        return 1;
+    } else {
+        fread(xs, element_size, N, fp);
+        fread(ys, element_size, N, fp);
+        fclose(fp);
     }
 
     /* run benchmark */
@@ -55,10 +84,3 @@ int main() {
     printf("gcc %s             for rms=%.16f : %8.7f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
     return 0;
 }
-
-/*
-Compiling with the following segfaults:
-rm -f rms
-gcc -Wall -g rms.c -lm -o rms &&
-./rms
-*/
