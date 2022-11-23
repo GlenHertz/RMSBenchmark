@@ -1,17 +1,24 @@
 #!/bin/bash
 set -x
 tclsh rms.tcl
-python2 rms.py
-python rms.py
-python3 rms.py
-python2 rms_array_numpy.py
-python rms_array_numpy.py
-python3 rms_array_numpy.py
-python3 rms_for_numpy.py
-python rms_for_numpy.py
-python2 rms_for_numba.py
-python rms_for_numba.py
-python3 rms_for_numba.py
+if command -v python2 &> /dev/null; then
+    python2 rms.py
+    python2 rms_array_numpy.py
+    python2 rms_for_numba.py
+    python2 rms_for_numba_numpy.py
+fi
+if command -v python &> /dev/null; then
+    python rms.py
+    python rms_array_numpy.py
+    python rms_for_numba.py
+    python rms_for_numba_numpy.py
+fi
+if command -v python3 &> /dev/null; then
+    python3 rms.py
+    python3 rms_array_numpy.py
+    python3 rms_for_numba.py
+    python3 rms_for_numba_numpy.py
+fi
 rm -f rms{1,2,3}
 gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms1 && ./rms1
 gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms2 && ./rms2
@@ -22,7 +29,3 @@ julia rms_simd.jl
 julia -t4 rms_tturbo.jl
 julia -t8 rms_tturbo.jl
 julia -tauto rms_tturbo.jl
-#julia rms_for_numba.jl
-#julia rms_for_numba_numpy.jl
-#julia rms_fastmath.jl
-#python rms_array_numpy.py

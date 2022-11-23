@@ -52,7 +52,7 @@ int main() {
         rms(xs, ys, N);
     t2 = clock();
     ns = (double) (t2 - t1) / (double) CLOCKS_PER_SEC / (double) trials / (double) N * 1e9;
-    printf("gcc    %s    for            rms=%.16f : %5.1f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
+    printf("gcc %s             for rms=%.16f : %8.7f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
     return 0;
 }
 
