@@ -7,9 +7,6 @@ xs = [dt*i for i in 0:N-1]
 freq = 1000
 ys = sin.(2pi*freq*xs)
 
-#println("first (x,y) = ($(first(xs)), $(first(ys)))")
-#println("last (x,y) = ($(last(xs)), $(last(ys)))")
-
 # Run benchmark:
 val = rms(xs, ys)  # first time to compile
 trials = 380
