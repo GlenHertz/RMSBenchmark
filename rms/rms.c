@@ -30,6 +30,7 @@ int main() {
     double *ys_gen;
     double *xs;
     double *ys;
+    double *results;
     clock_t t1, t2;
     double ns;
 
@@ -75,11 +76,22 @@ int main() {
 
     /* run benchmark */
     trials = 500;
+    results = malloc(trials*sizeof(double));
     val = rms(xs, ys, N);
     t1 = clock();
     for (i=0; i < trials; i++)
-        rms(xs, ys, N);
+        results[i] = rms(xs, ys, N);
     t2 = clock();
+    char file_name2[] = "results.bin";
+    fp = fopen(file_name2, "wb");
+    if (fp == NULL) { /* If an error occurs during the file creation */
+        fprintf(stderr, "fopen() failed for '%s'\n", file_name2);
+        return 1;
+    } else {
+        fwrite(results, element_size, trials, fp);
+        fclose(fp);
+    }
+
     ns = (double) (t2 - t1) / (double) CLOCKS_PER_SEC / (double) trials / (double) N * 1e9;
     printf("gcc %s             for rms=%.16f : %8.7f ns per iteration average over %ld trials of %ld points\n", VERSION, val, ns, trials, N);
     return 0;
