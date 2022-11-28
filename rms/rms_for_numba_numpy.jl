@@ -9,11 +9,10 @@ import numpy as np
 def rms(xs, ys):
     area = 0.0
     for i in range(1,len(xs)):
-        x1 = xs[i-1]
+        dx = xs[i] - xs[i-1]
         y1 = ys[i-1]
         x2 = xs[i]
         y2 = ys[i]
-        dx = x2 - x1
         dy = y2 - y1
         area += dx*(dy**2/3 + y1*y2)
     return math.sqrt(area/(xs[-1] - xs[0]))
