@@ -26,13 +26,10 @@ end
 
 
 # Create sine wave:
-N = 10^6 + 1
-tstop = 1e-3
-dt = tstop/(N-1)
-xs = [dt*i for i in 0:N-1]
-freq = 1000
-ys = sin.(2pi*freq*xs)
+xs = 0:10^-6:1
+ys = sin.(2pi*1000*xs)
 sig = Signal(xs, ys)
+val = rms(sig)
 
 #using Unitful, Unitiful.DefaultSymbols
 #xs = xs .* 1s

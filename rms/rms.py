@@ -12,27 +12,21 @@ def rms(xs, ys):
         area += dx*(dy**2/3.0 + y1*y2)
     return math.sqrt(area/(xs[-1] - xs[0]))
 
+# generate a 1kHz sine wave from 0 to 1 second (with 1us steps):
+xs = [i/(10**6) for i in range(10**6+1)]
+ys = [math.sin(2*math.pi*1000*x) for x in xs]
+val = rms(xs, ys)
 
-rms([1, 1.5, 2, 3], [-1, 0, 1, -1])
-# Create sine wave:
-N = 10**6 + 1
-tstop = 1e-3
-dt = tstop/(N-1)
-xs = [dt*i for i in range(N)]
-freq = 1000
-ys = [math.sin(2*math.pi*freq*x) for x in xs]
-#print("first (x,y) = (", xs[0], ", ", ys[0], ")")
-#print("last (x,y) = (", xs[-1], ", ", ys[-1], ")")
+
 
 # Run benchmark
 import time
-val = rms(xs, ys)
 trials=38
 tbegin = time.time()
 for i in range(trials):
     rms(xs, ys)
 tdone = time.time()
-
+N = len(xs)
 ns = (tdone - tbegin)/trials/N * 1e9
 
 import sys

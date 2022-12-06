@@ -15,22 +15,16 @@ proc rms {xs ys} {
     return [expr {sqrt($area/([lindex $xs end] - [lindex $xs 0]))}]
 }
 
-
-
-
-# Create sine wave
-set N 1000001
-set freq 1000
-set tstop [expr 1/double($freq)]
-set dt [expr $tstop/double($N-1)]
+# generate a 1kHz sine wave from 0 to 1 second (1M+1 points):
 set xs {}
 set ys {}
-set pi [expr acos(-1)]
-for {set i 0} {$i < $N} {incr i} {
-    set t [expr {$dt*$i}]
+set N 1000000
+for {set i 0} {$i <= $N} {incr i} {
+    set t [expr $i/double($N)]
     lappend xs $t
-    lappend ys [expr {sin(2*$pi*$freq*$t)}]
+    lappend ys [expr {sin(2*acos(-1)*1000*$t)}]
 }
+set val [rms $xs $ys]
 
 # Run benchmark
 set trials 4
@@ -38,6 +32,7 @@ set t1 [clock microseconds]
 for {set i 0} {$i < $trials} {incr i} {
     set val [rms $xs $ys]
 }
+set N [llength $xs]
 set t2 [clock microseconds]
 set ns [expr {round(10*($t2 - $t1)*1e-6/double($trials)/double($N)*1e9)/10.0}]
 set ver [info patchlevel]

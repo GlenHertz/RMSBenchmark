@@ -1,7 +1,7 @@
 # Julia with Single Instrution Multiple Data (SIMD)
 function rms(xs, ys)
     @assert length(xs) == length(ys) "dimension mismatch"
-    area = 0.0
+    area = zero(eltype(ys))
     @simd for i in 2:length(xs)
         Δx = xs[i] - xs[i-1]
         y₁ = ys[i-1]
@@ -11,6 +11,11 @@ function rms(xs, ys)
     end
     sqrt(area/(last(xs) - first(xs)))
 end
+
+# Create sine wave:
+xs = Float64.(collect(0:10^-6:1))
+ys = Float64.(sin.(2pi * 1000 * xs))
+val = rms(xs, ys)
 
 
 

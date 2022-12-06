@@ -12,20 +12,24 @@ if command -v python &> /dev/null; then
     python rms_array_numpy.py
     python rms_for_numba.py
     python rms_for_numba_numpy.py
+    python rms_array_numpy_jax.py
 fi
 if command -v python3 &> /dev/null; then
     python3 rms.py
     python3 rms_array_numpy.py
     python3 rms_for_numba.py
     python3 rms_for_numba_numpy.py
+    python3 rms_array_numpy_jax.py
 fi
 rm -f rms{1,2,3}
 gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms1 && ./rms1
 gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms2 && ./rms2
 gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms3 && ./rms3
+gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms3 && ./rms3
 julia rms_array.jl
 julia rms.jl
 julia rms_simd.jl
+julia rms_fastmath.jl
 julia -t4 rms_tturbo.jl
 julia -t8 rms_tturbo.jl
 julia -tauto rms_tturbo.jl

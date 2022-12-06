@@ -6,7 +6,6 @@
 double rms(double xs[], double ys[], long N) {
     long i;
     double area, y1, y2, dx, dy, val;
-
     area = 0.0;
     for (i=1; i < N; i++) {
         dx = xs[i] - xs[i-1];
@@ -19,20 +18,15 @@ double rms(double xs[], double ys[], long N) {
     return val;
 }
 
-
 int main() {
     /* declare variables: */
     long i, trials, N;
-    double tstop, dt, freq, t;
+    double tstop, dt, freq, t, val, ns;
     size_t element_size = sizeof tstop;
-    double val;
-    double *xs;
-    double *ys;
-    double *results;
+    double *xs, *ys, *results;
     clock_t t1, t2;
-    double ns;
 
-    /* Create sine wave */
+    /* generate a 1kHz sine wave from 0 to 1 second (with 1us steps): */
     N = 1000001;
     freq = 1000;
     tstop = 1/ (double) freq;

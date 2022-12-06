@@ -9,7 +9,7 @@ procedure( rms(xs, ys)
             y2 = car(ycdr)
             dx = x2 - x1
             dy = y2 - y1
-            area = area + dx * (expt(dy 2)/float(3) + y1 * y2) ; quadratic shape
+            area = area + dx * (expt(dy 2)/float(3) + y1 * y2)
             x1 = x2
             y1 = y2
         )
@@ -18,6 +18,13 @@ procedure( rms(xs, ys)
     ) ; prog
 ) ; procedure
 
+; generate a 1kHz sine wave from 0 to 1 second (1M+1 points):
+xs = nil
+for(i 0 1000001 xs = cons(float(i)/float(1000001), xs))
+xs = reverse(xs)
+defMathConstants('someName)
+ys = foreach( mapcar x xs sin(2*someName.PI*1000*x))
+val = rms(xs, ys)
 
 
 ; More lispy version of the above
@@ -99,12 +106,9 @@ procedure( rms(xs, ys)
 ;ys = '(4 5 6)
 
 xs = nil
-for(i 0 1000000 xs = cons(float(i), xs))
+for(i 0 1000001 xs = cons(float(i)/1000001, xs))
 xs = reverse(xs)
-
-ys = nil
-for(i 0 1000000 ys = cons(float(mod(i, 2)), ys))
-ys = reverse(ys)
+ys = foreach( mapcar y xs sin(y))
 
 iterations = 10
 sum_wall_time = 0.0
@@ -177,3 +181,7 @@ printf("%f\n", rms(xs, ys))
         ) ; if
     ) ; let
 ) ; procedure
+
+
+
+

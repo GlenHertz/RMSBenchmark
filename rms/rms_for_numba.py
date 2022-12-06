@@ -13,26 +13,21 @@ def rms(xs, ys):
         area += dx*(dy**2/3 + y1*y2)
     return math.sqrt(area/(xs[-1] - xs[0]))
 
-
-# A sine wave
-N=10**6 + 1
-freq = 1000
-tstop = 1/freq
-dt = tstop/(N-1)
-xs = List([dt * i for i in range(N)])
-ys = List([math.sin(2*math.pi*freq*x) for x in xs])
+# generate a 1kHz sine wave from 0 to 1 second (with 1us steps):
+xs = List([i/(10**6) for i in range(10**6+1)])
+ys = List([math.sin(2*math.pi*1000*x) for x in xs])
+val = rms(xs, ys)
 
 
 # Run benchmark
 import time
-val = rms(xs, ys) # warm up
 trials=38
 times = []
 tbegin = time.time()
 for i in range(trials):
     rms(xs, ys)
 tdone = time.time()
-
+N = len(xs)
 ns = (tdone - tbegin)/trials/N * 1e9
 
 print("RMS of trangular wave: {val} (ans = {ans})".format(val=rms(xs, ys), ans=1/math.sqrt(3)))

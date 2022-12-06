@@ -11,6 +11,10 @@ function rms(xs, ys)
     sqrt(area/(last(xs) - first(xs)))
 end
 
+# Create sine wave:
+xs = 0:10^-6:1
+ys = sin.(2pi * 1000 * xs)
+val = rms(xs, ys)
 
 
 include("benchmark.jl")

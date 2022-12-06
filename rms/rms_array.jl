@@ -8,6 +8,10 @@ function rms(xs, ys)
     sqrt(area/(xs[end]- xs[begin]))
 end
 
+# Create sine wave:
+xs = collect(0:10^-6:1)
+ys = sin.(2pi * 1000 * xs)
+val = rms(xs, ys)
 
 
 
