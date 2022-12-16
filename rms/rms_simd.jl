@@ -13,10 +13,10 @@ function rms(xs, ys)
 end
 
 # Create sine wave:
-xs = Float64.(collect(0:10^-6:1))
-ys = Float64.(sin.(2pi * 1000 * xs))
+xs = 0:10^-6:1
+ys = sin.(2pi * 1000 * xs)
 val = rms(xs, ys)
 
 
-
+xs = collect(xs)
 include("benchmark.jl")

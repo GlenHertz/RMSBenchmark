@@ -15,12 +15,13 @@ proc rms {xs ys} {
     return [expr {sqrt($area/([lindex $xs end] - [lindex $xs 0]))}]
 }
 
-# generate a 1kHz sine wave from 0 to 1 second (1M+1 points):
+# generate a 1kHz sine wave from 0 to 1 second (with 1us steps):
 set xs {}
 set ys {}
 set N 1000000
+set dt [expr 1/double($N)]
 for {set i 0} {$i <= $N} {incr i} {
-    set t [expr $i/double($N)]
+    set t [expr $i*$dt]
     lappend xs $t
     lappend ys [expr {sin(2*acos(-1)*1000*$t)}]
 }

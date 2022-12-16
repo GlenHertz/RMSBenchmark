@@ -21,5 +21,5 @@ ys = sin.(2pi * 1000 * xs)
 val = rms(xs, ys)
 
 
-
+xs = collect(xs)
 include("benchmark.jl")
