@@ -38,6 +38,7 @@ julia rms.jl
 julia rms_eachindex.jl
 julia rms_simd.jl
 julia rms_fastmath.jl
+julia rms_turbo.jl
 julia -t4 rms_tturbo.jl
 julia -t8 rms_tturbo.jl
 julia -tauto rms_tturbo.jl
