@@ -12,7 +12,7 @@ function rms(xs, ys)
     sqrt(area/(last(xs) - first(xs)))
 end
 
-# Create sine wave:
+# generate a 1kHz sine wave from 0 to 1 second (with 1us steps):
 xs = 0:10^-6:1
 ys = sin.(2pi * 1000 * xs)
 val = rms(xs, ys)
