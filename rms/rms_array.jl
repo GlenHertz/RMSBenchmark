@@ -4,9 +4,9 @@ function rms(xs, ys)
     y₁ = @view ys[begin:end-1]
     x₂ = @view xs[begin+1:end]
     y₂ = @view ys[begin+1:end]
-    areas = @. (x₂ - x₁) * ((y₂ - y₁)^2/3 + y₁*y₂)
+    areas = @. (x₂-x₁) * ((y₂-y₁)^2/3 + y₁*y₂)
     area = sum(areas)
-    sqrt(area/(xs[end]- xs[begin]))
+    sqrt(area/(xs[end] - xs[begin]))
 end
 
 # Create sine wave:
