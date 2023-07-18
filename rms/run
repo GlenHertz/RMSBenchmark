@@ -28,16 +28,16 @@ if command -v python3.11 &> /dev/null; then
     python3.11 rms_for_numba_numpy.py
     python3.11 rms_array_numpy_jax.py
 fi
-rm -f rms{1,2,3}
+rm -f rms{1,2,3,3fast}
 gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms1 && ./rms1
 gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms2 && ./rms2
 gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms3 && ./rms3
-gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms4 && ./rms4
-rm -f rms_threaded{1,2,3}
-gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms1 && ./rms_threaded1
-gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms2 && ./rms_threaded2
-gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms3 && ./rms_threaded3
-gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms4 && ./rms_threaded4
+gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms.c -lm -o rms3fast && ./rms3fast
+rm -f rms_threaded{1,2,3,3fast}
+gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded1 && ./rms_threaded1
+gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded2 && ./rms_threaded2
+gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded3 && ./rms_threaded3
+gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded3fast && ./rms_threaded3fast
 julia rms_array.jl
 julia rms.jl
 julia rms_generator.jl

@@ -2,6 +2,11 @@ rms/rms
 rms/rms1
 rms/rms2
 rms/rms3
+rms/rms3fast
+rms/rms_threaded1
+rms/rms_threaded2
+rms/rms_threaded3
+rms/rms_threaded3fast
 .vscode/settings.json
 rms/results.bin
 .CondaPkg
