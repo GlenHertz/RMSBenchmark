@@ -40,6 +40,7 @@ gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms3 && ./r
 gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -lm -o rms4 && ./rms_threaded4
 julia rms_array.jl
 julia rms.jl
+julia rms_generator.jl
 julia rms_eachindex.jl
 julia rms_simd.jl
 julia rms_fastmath.jl
