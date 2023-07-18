@@ -38,13 +38,13 @@ gcc -O1 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rm
 gcc -O2 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded2 && ./rms_threaded2
 gcc -O3 -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded3 && ./rms_threaded3
 gcc -Ofast -Wall -DVERSION=\"`gcc -dumpversion`\" rms_threaded.c -fopenmp -lm -o rms_threaded3fast && ./rms_threaded3fast
-julia rms_array.jl
-julia rms.jl
-julia rms_generator.jl
-julia rms_eachindex.jl
-julia rms_simd.jl
-julia rms_fastmath.jl
-julia rms_turbo.jl
-julia -t4 rms_tturbo.jl
-julia -t8 rms_tturbo.jl
-julia -tauto rms_tturbo.jl
+julia --project rms_array.jl
+julia --project rms.jl
+julia --project rms_generator.jl
+julia --project rms_eachindex.jl
+julia --project rms_simd.jl
+julia --project rms_fastmath.jl
+julia --project rms_turbo.jl
+julia --project -t4 rms_tturbo.jl
+julia --project -t8 rms_tturbo.jl
+julia --project -tauto rms_tturbo.jl
