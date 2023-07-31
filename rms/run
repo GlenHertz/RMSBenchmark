@@ -42,11 +42,13 @@ julia --project rms_array.jl
 julia --project rms.jl
 julia --project rms_generator.jl
 julia --project rms_eachindex.jl
+
+julia --project rms.jl
 julia --project rms_simd.jl
 julia --project rms_fastmath.jl
-julia --project rms_turbo.jl
 julia --project -t4 rms_tturbo.jl
 julia --project -t8 rms_tturbo.jl
 julia --project -tauto rms_tturbo.jl
 julia --project -t4 rms_threadsx.jl
-julia --project -t4 rms_threadsx2.jl
+julia --project -t8 rms_threadsx.jl
+julia --project -tauto rms_threadsx.jl
